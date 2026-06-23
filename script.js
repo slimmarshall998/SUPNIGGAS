@@ -8,21 +8,24 @@ function clearDisplay(){
   display.value = "";
 }
 
+function deleteLast(){
+  display.value = display.value.slice(0, -1);
+}
+
 function calculate(){
   try{
     display.value = eval(display.value);
   }
-  catch(error){
+  catch{
     display.value = "Error";
   }
 }
 
-// Keyboard Support
 document.addEventListener("keydown", (e) => {
 
-  const allowedKeys = "0123456789+-*/.%";
+  const allowed = "0123456789+-*/.";
 
-  if(allowedKeys.includes(e.key)){
+  if(allowed.includes(e.key)){
     display.value += e.key;
   }
 
@@ -31,7 +34,7 @@ document.addEventListener("keydown", (e) => {
   }
 
   if(e.key === "Backspace"){
-    display.value = display.value.slice(0, -1);
+    deleteLast();
   }
 
   if(e.key === "Escape"){
